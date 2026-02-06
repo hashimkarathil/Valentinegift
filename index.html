@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Gift</title>
+    <style>
+        /* --- CSS STYLING --- */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec; /* Soft Pink */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Prevents scrollbars when button moves */
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            transition: all 0.5s ease;
+        }
+
+        .hidden { display: none; }
+
+        img { width: 150px; margin-bottom: 20px; border-radius: 10px; }
+
+        .btn-container {
+            margin-top: 20px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #start-btn, #yes-btn {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        #no-btn {
+            background-color: #e0e0e0;
+            color: #757575;
+            position: absolute; /* Needed to move around */
+        }
+
+        h1 { color: #d81b60; font-size: 1.5rem; }
+        .yay-text { color: #ff4081; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="card">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIyeGZ6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6JmRjPTE/3o7TKoWXlo3M1nCdeM/giphy.gif" alt="Hearts">
+        <h1>Hi Delulu BTech Kari, I have a question...</h1>
+        <button id="start-btn" onclick="nextPage(2)">Click to See</button>
+    </div>
+
+    <div id="page2" class="card hidden">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmc0eXh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3JmRjPTE/KztT2c4u8mYYUiMKd1/giphy.gif" alt="Cute Cat">
+        <h1>Delulu, will you be my Valentine?</h1>
+        <div class="btn-container">
+            <button id="yes-btn" onclick="nextPage(3)">Yes</button>
+            <button id="no-btn" onmouseover="moveButton()">No</button>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #999;">"No" seems a bit shy 😈</p>
+    </div>
+
+    <div id="page3" class="card hidden">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmc0eXh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3eHh3JmRjPTE/26u4b45b8Klg9mANy/giphy.gif" alt="Celebration">
+        <h1 class="yay-text">YAY! 🎉</h1>
+        <p>I knew you'd say yes! ❤️</p>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+
+        // Function to switch between pages
+        function nextPage(pageNumber) {
+            // Hide all pages
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.add('hidden');
+
+            // Show the specific page
+            document.getElementById('page' + pageNumber).classList.remove('hidden');
+        }
+
+        // The "Impossible to click No" logic
+        function moveButton() {
+            const noBtn = document.getElementById('no-btn');
+            
+            // Calculate random position within the screen
+            // Subtracting 100 to keep the button away from the edges
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.position = 'fixed'; // Makes it jump anywhere on screen
+        }
+    </script>
+</body>
+</html>
